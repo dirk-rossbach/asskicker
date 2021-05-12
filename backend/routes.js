@@ -1,8 +1,29 @@
-const express = require("express");
-const { players, match } = require("./db-service");
+const express = require("express"),
+  { players, match } = require("./db-service"),
+  QRCode = require("qrcode");
 
 const matchRoute = express.Router();
 const rosterRoute = express.Router();
+
+/* testi
+const teams = [["andi", "max"], ["michael", "dirk"]];
+db.match.start(teams);
+
+db.match.addGoal(0);
+db.match.addGoal(1);
+db.match.addGoal(1);
+db.match.addGoal(1);
+db.match.addGoal(0);
+db.match.addGoal(1);
+db.match.addGoal(1);
+db.match.addGoal(1);
+
+console.log(db.match.get());
+
+db.match.end();
+
+console.log(db.pastmatches.getAll());
+*/
 
 /* match API */
 matchRoute.post("/start", (req, res, next) => {
@@ -10,13 +31,13 @@ matchRoute.post("/start", (req, res, next) => {
   res.send("start match");
 });
 matchRoute.post("/end", (req, res, next) => {
-    res.send("end match");
-    // end match 
-  });
+  res.send("end match");
+  // end match 
+});
 matchRoute.post("/goal", (req, res, next) => {
-    res.send("gooooaaal!!!");
-    // update score for ws frontends
-    // match.get()
+  res.send("gooooaaal!!!");
+  // update score for ws frontends
+  // match.get()
 });
 matchRoute.post("/ungoal", (req, res, next) => {
   res.send("removed last goal");
@@ -36,4 +57,11 @@ rosterRoute.get("/players", (req, res) => {
   res.json(players.getAll());
 });
 
-module.exports = { matchRoute: matchRoute, rosterRoute: rosterRoute };
+rosterRoute.get("/player/qr/:name.png", (req, res) => {
+  QRCode.toBuffer(req.params.name).then((qr) => {
+    res.setHeader("Content-Type", "image/png");
+    res.end(qr);
+  });
+});
+
+module.exports = { match: matchRoute, roster: rosterRoute };

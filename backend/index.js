@@ -13,16 +13,3 @@ app.use("/roster", rosterRoute);
 app.listen(port, () => {
   console.log(`asskicker listening at http://localhost:${port}`);
 });
-
-const pool = ["andi", "max", "michael", "dirk"];
-for (let name of pool) {
-  db.match.addPlayerToRandomTeam(name);
-  let match = db.match.get();
-  console.log(match.teams[0].players, match.teams[1].players);
-}
-
-db.match.shufflePlayers();
-match = db.match.get();
-console.log(match.teams[0].players, match.teams[1].players);
-
-db.match.reset();

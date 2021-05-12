@@ -1,7 +1,6 @@
 const low = require("lowdb"),
-  QRCode = require("qrcode"),
   FileSync = require("lowdb/adapters/FileSync"),
-  random = require("./random");
+  _ = require('lodash');
 
 const adapter = new FileSync("db.json");
 const db = low(adapter);
@@ -9,6 +8,8 @@ const db = low(adapter);
 db.defaults({
   players: [],
   match: {
+    start: 0,
+    end: 0,
     teams: [
       {
         players: [],
@@ -20,102 +21,74 @@ db.defaults({
       },
     ]
   },
+  pastmatches: [],
 }).write();
 
 const players = {
   getAll: () => {
     return db.get("players").value();
   },
-
   getByName: (name) => {
     return db.get("players").find({ name: name }).value();
   },
   create: (name) => {
-    QRCode.toDataURL(name).then((qr) => {
-      db.get("players")
-        .push({ name: name, qr: qr })
-        .write();
-    });
+    db.get("players")
+      .push({ name: name })
+      .write();
   },
 };
-
-const FULL_TEAM = 2;
 
 const match = {
   get: () => {
     return db.get("match").value();
   },
-  addPlayerToRandomTeam: (name) => {
-    const teams = db.get("match.teams").value();
-    if (teams[0].players.length >= FULL_TEAM) {
-      if (teams[1].players.length >= FULL_TEAM) {
-        return;
-      }
-      db.get("match.teams[1].players")
-        .push(name)
-        .write();
-    } else if (teams[1].players.length >= FULL_TEAM) {
-      if (teams[0].players.length >= FULL_TEAM) {
-        return;
-      }
-      db.get("match.teams[0].players")
-        .push(name)
-        .write();
-    } else if (teams[0].players.length != teams[1].players.length) {
-      if (teams[0].players.length < teams[1].players.length) {
-        db.get("match.teams[0].players")
-          .push(name)
-          .write();
-      } else {
-        db.get("match.teams[1].players")
-          .push(name)
-          .write();
-      }
-    } else if (random.bool()) {
-      db.get("match.teams[0].players")
-        .push(name)
-        .write();
-    } else {
-      db.get("match.teams[1].players")
-        .push(name)
-        .write();
-    }
+  start: (teams) => {
+    db.get("match").assign({
+      start: Date.now(),
+      end: 0,
+      teams: teams.map((players) => {
+        return { players: players, goals: [] };
+      }),
+    }).write();
   },
-  addPlayerToTeam: (name, team) => {
-
+  end: () => {
+    const m = db.get("match").value();
+    m.end = Date.now();
+    console.log(m);
+    pastmatches.insert(_.cloneDeep(m));
+    match.reset();
   },
-  removePlayerFromTeam: (name, team) => {
-
-  },
-  shufflePlayers: () => {
-    const teams = db.get("match.teams").value();
-    const players = [];
-    players.push(...teams[0].players);
-    players.push(...teams[1].players);
-    random.shuffleArray(players);
-    const n = players.length / 2;
-    db.get("match.teams[0].players")
-      .assign(players.slice(0, n))
-      .write();
-    db.get("match.teams[1].players")
-      .assign(players.slice(n))
-      .write();
+  addGoal: (team) => {
+    db.get("match.teams").get(team)
+      .get("goals").push(Date.now()).write();
   },
   reset: () => {
     db.get("match").assign({
-      endScore: 6,
+      start: 0,
+      end: 0,
       teams: [
         {
           players: [],
-          score: 0,
+          goals: [],
         },
         {
           players: [],
-          score: 0,
+          goals: [],
         },
       ]
     }).write();
+  }
+};
+
+const pastmatches = {
+  getAll: () => {
+    return db.get("pastmatches").value();
+  },
+  insert: (match) => {
+    db.get("pastmatches")
+      .push(match)
+      .write();
   },
 };
 
-module.exports = { players, match };
+module.exports = { players, match, pastmatches };
