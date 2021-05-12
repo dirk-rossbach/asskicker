@@ -1,4 +1,13 @@
 {
-  "match": {},
-  "players": []
+  "players": [
+    {
+      "uid": "j0kPipqM6P1Q",
+      "name": "dirk"
+    },
+    {
+      "uid": "HWwb7hC9xy6n",
+      "name": "dirk"
+    }
+  ],
+  "match": {}
 }
