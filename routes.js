@@ -1,30 +1,29 @@
 const express = require("express");
-const { players } = require("./db-service");
+const { players, match } = require("./db-service");
 
-const match = express.Router();
-const roster = express.Router();
+const matchRoute = express.Router();
+const rosterRoute = express.Router();
 
 /* match API */
-match.post("/", (req, res, next) => {
+matchRoute.post("/", (req, res, next) => {
   res.end("Welcome to You in Contact Page");
 });
-
-
+matchRoute.post("/goal", (req, res, next) => {
+    // update score for ws frontends
+    // match.get()
+});
 
 /* roster API */
-roster.get("/player", (req, res, next) => {
+rosterRoute.get("/player", (req, res) => {
   console.log();
-
-  next();
 });
-roster.post("/player", (req, res, next) => {
+rosterRoute.post("/player", (req, res) => {
   players.create(req.body.name);
   res.send("post player works");
-  next();
 });
 
-roster.get("/players", (req, res, next) => {
-    res.json(players.getAll());
-})
+rosterRoute.get("/players", (req, res) => {
+  res.json(players.getAll());
+});
 
-module.exports = { match, roster };
+module.exports = { match: matchRoute, roster: rosterRoute };
