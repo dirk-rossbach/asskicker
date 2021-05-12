@@ -11,11 +11,11 @@ app.use(express.json());
 app.use("/", home);
 app.use("/roster", roster);
 
-/*
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-*/
+
 
 const pool = ["andi", "max", "michael", "dirk"];
 for(let name of pool) {
