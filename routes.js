@@ -1,21 +1,30 @@
-var express = require("express");
-const home = express.Router();
+const express = require("express");
+const { players } = require("./db-service");
+
+const match = express.Router();
 const roster = express.Router();
 
 /* match API */
-home.get("/", (req, res, next) => {
+match.post("/", (req, res, next) => {
   res.end("Welcome to You in Contact Page");
 });
 
+
+
 /* roster API */
 roster.get("/player", (req, res, next) => {
-  res.send("works");
+  console.log();
+
   next();
 });
 roster.post("/player", (req, res, next) => {
-  console.log(req.body);
+  players.create(req.body.name);
   res.send("post player works");
   next();
 });
 
-module.exports = { home, roster };
+roster.get("/players", (req, res, next) => {
+    res.json(players.getAll());
+})
+
+module.exports = { match, roster };
