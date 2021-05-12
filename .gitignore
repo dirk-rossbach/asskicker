@@ -117,3 +117,5 @@ dist
 
 # db
 db.json
+
+.DS_Store
