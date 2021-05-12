@@ -18,6 +18,11 @@ matchRoute.post("/goal", (req, res, next) => {
     // update score for ws frontends
     // match.get()
 });
+matchRoute.post("/ungoal", (req, res, next) => {
+  res.send("removed last goal");
+  // update score for ws frontends
+  // match.get()
+});
 
 /* roster API */
 rosterRoute.get("/player", (req, res) => {
@@ -27,7 +32,6 @@ rosterRoute.post("/player", (req, res) => {
   players.create(req.body.name);
   res.send("post player works");
 });
-
 rosterRoute.get("/players", (req, res) => {
   res.json(players.getAll());
 });
