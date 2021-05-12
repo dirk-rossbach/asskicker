@@ -1,6 +1,4 @@
 {
-  "player": {
-    "uid": "110"
-  },
-  "match": {}
+  "match": {},
+  "players": []
 }
