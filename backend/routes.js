@@ -36,4 +36,4 @@ rosterRoute.get("/players", (req, res) => {
   res.json(players.getAll());
 });
 
-module.exports = { match: matchRoute, roster: rosterRoute };
+module.exports = { matchRoute: matchRoute, rosterRoute: rosterRoute };
