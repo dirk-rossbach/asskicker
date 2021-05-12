@@ -5,10 +5,16 @@ const matchRoute = express.Router();
 const rosterRoute = express.Router();
 
 /* match API */
-matchRoute.post("/", (req, res, next) => {
-  res.end("Welcome to You in Contact Page");
+matchRoute.post("/start", (req, res, next) => {
+  // get playes from request and do something ..
+  res.send("start match");
 });
+matchRoute.post("/end", (req, res, next) => {
+    res.send("end match");
+    // end match 
+  });
 matchRoute.post("/goal", (req, res, next) => {
+    res.send("gooooaaal!!!");
     // update score for ws frontends
     // match.get()
 });
