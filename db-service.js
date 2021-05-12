@@ -1,6 +1,6 @@
-const low = require("lowdb");
-const { nanoid } = require("nanoid");
-const FileSync = require("lowdb/adapters/FileSync");
+const low = require("lowdb"),
+  QRCode = require("qrcode"),
+  FileSync = require("lowdb/adapters/FileSync");
 
 const adapter = new FileSync("db.json");
 const db = low(adapter);
@@ -14,14 +14,13 @@ const players = {
   getAll: () => {
     return db.get("players").value();
   },
-  getById: () => {
-    return db.get("players").find({ uid: uid }).value();
+
+  getByName: (name) => {
+    return db.get("players").find({ name: name }).value();
   },
   create: (name) => {
-    return db
-      .get("players")
-      .push({ uid: nanoid(12), name: name })
-      .write();
+    const qr = QRCode.toDataURL(name);
+    return db.get("players").push({ name: name, qr: qr }).write();
   },
 };
 
