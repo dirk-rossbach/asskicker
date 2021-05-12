@@ -9,15 +9,14 @@ const db = low(adapter);
 db.defaults({
   players: [],
   match: {
-    endScore: 6,
     teams: [
       {
         players: [],
-        score: 0,
+        goals: [],
       },
       {
         players: [],
-        score: 0,
+        goals: [],
       },
     ]
   },
