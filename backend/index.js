@@ -1,5 +1,6 @@
 const express = require("express");
 const { matchRoute, rosterRoute } = require("./routes");
+const { match } = require("./db-service");
 
 const { goalEvent } = require("./event-service");
 
@@ -9,9 +10,14 @@ const port = 3000;
 
 goalEvent.on("goal", () => {
   websocket.getWss().clients.forEach((client) => {
-    client.send("goal !!");
+    client.send(JSON.stringify(getCurrentScore()));
   });
 });
+
+function getCurrentScore() {
+  const teams = match.get().teams;
+  return [teams[0].goals.length, teams[1].goals.length];
+}
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -20,7 +26,7 @@ app.use("/roster", rosterRoute);
 
 app.ws("/score", function (ws, req) {
   ws.on("message", () => {
-    /* do something cool */
+    ws.send(JSON.stringify(getCurrentScore()));
   });
 });
 
