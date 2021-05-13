@@ -2,6 +2,8 @@ const express = require("express"),
   { players, match } = require("./db-service"),
   QRCode = require("qrcode");
 
+const { goalEvent } = require("./event-service");
+
 const matchRoute = express.Router();
 const rosterRoute = express.Router();
 
@@ -36,11 +38,12 @@ matchRoute.post("/start", (req, res, next) => {
 });
 matchRoute.post("/end", (req, res, next) => {
   res.send("end match");
-  // end match 
+  // end match
 });
 matchRoute.post("/goal", (req, res, next) => {
   res.send("gooooaaal!!!");
   match.addGoal(req.body.team);
+  goalEvent.emit('goal');
   // update score for ws frontends
   // match.get()
 });
