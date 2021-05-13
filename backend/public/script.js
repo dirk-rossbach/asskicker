@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   webSocket.onmessage = function (event) {
     console.log(event.data);
-    let score = document.createElement("span");
+    let score = document.createElement("div");
     score.textContent = event.data;
     sw.append(score);
   };
