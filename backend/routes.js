@@ -64,4 +64,4 @@ rosterRoute.get("/player/qr/:name.png", (req, res) => {
   });
 });
 
-module.exports = { match: matchRoute, roster: rosterRoute };
+module.exports = { matchRoute: matchRoute, rosterRoute: rosterRoute };
