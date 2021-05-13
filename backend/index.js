@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const { matchRoute, rosterRoute } = require("./routes");
 
 const { goalEvent } = require("./event-service");
@@ -15,6 +16,7 @@ goalEvent.on("goal", () => {
 
 app.use(express.static("public"));
 app.use(express.json());
+app.use(cors());
 app.use("/match", matchRoute);
 app.use("/roster", rosterRoute);
 
