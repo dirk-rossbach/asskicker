@@ -28,6 +28,10 @@ console.log(db.pastmatches.getAll());
 /* match API */
 matchRoute.post("/start", (req, res, next) => {
   // get playes from request and do something ..
+  const team0 = req.body[0];
+  const team1 = req.body[1];
+  //ToDo: check if players exist
+  match.start(req.body);
   res.send("start match");
 });
 matchRoute.post("/end", (req, res, next) => {
@@ -36,6 +40,7 @@ matchRoute.post("/end", (req, res, next) => {
 });
 matchRoute.post("/goal", (req, res, next) => {
   res.send("gooooaaal!!!");
+  match.addGoal(req.body.team);
   // update score for ws frontends
   // match.get()
 });

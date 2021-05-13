@@ -1,8 +1,6 @@
 const express = require("express");
 const { matchRoute, rosterRoute } = require("./routes");
 
-const db = require("./db-service");
-
 const app = express();
 const port = 3000;
 
