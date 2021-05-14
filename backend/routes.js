@@ -1,3 +1,4 @@
+const e = require("express");
 const express = require("express"),
   { players, match } = require("./db-service"),
   QRCode = require("qrcode");
@@ -27,14 +28,29 @@ db.match.end();
 console.log(db.pastmatches.getAll());
 */
 
-
 /* match API */
 matchRoute.post("/start", (req, res, next) => {
   const team0 = req.body[0];
   const team1 = req.body[1];
+  let falsePlayers = [];
+  team0.forEach((player) => {
+    if (!players.getByName(player)) {
+      falsePlayers.push(player);
+    }
+  });
+  team1.forEach((player) => {
+    if (!players.getByName(player)) {
+      falsePlayers.push(player);
+    }
+  });
+  console.log(falsePlayers);
+  if ((falsePlayers.length == 0)) {
+    match.start(req.body);
+    res.json({ MESSAGE: "start match" });
+  } else {
+    res.status(404).json({ ERROR: "Player not found", players: falsePlayers });
+  }
   //ToDo: check if players exist
-  match.start(req.body);
-  res.send("start match");
 });
 matchRoute.post("/end", (req, res, next) => {
   res.send("end match");
@@ -54,8 +70,13 @@ matchRoute.post("/ungoal", (req, res, next) => {
 });
 
 /* roster API */
-rosterRoute.get("/player", (req, res) => {
-  console.log();
+rosterRoute.get("/player/:name", (req, res) => {
+  const player = players.getByName(req.params.name);
+  if (player) {
+    res.json(player);
+  } else {
+    res.status(404).json({ ERROR: "Player not found", players: req.params.name });
+  }
 });
 rosterRoute.post("/player", (req, res) => {
   players.create(req.body.name);
@@ -72,7 +93,5 @@ rosterRoute.get("/player/qr/:name.png", (req, res) => {
     res.end(qr);
   });
 });
-
-
 
 module.exports = { matchRoute: matchRoute, rosterRoute: rosterRoute };
