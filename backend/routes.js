@@ -43,30 +43,34 @@ matchRoute.post("/start", (req, res, next) => {
       falsePlayers.push(player);
     }
   });
-  console.log(falsePlayers);
   if (falsePlayers.length == 0) {
-    match.start(req.body);
-    res.json({ MESSAGE: "start match" });
+    try {
+      match.start(req.body);
+      res.json({ MESSAGE: "match started" });
+    } catch (error) {
+      res.status(409).json({ ERROR: error.message });
+    }
   } else {
     res.status(404).json({ ERROR: "Player not found", players: falsePlayers });
   }
-  //ToDo: check if players exist
 });
 matchRoute.post("/end", (req, res, next) => {
-  res.send("end match");
+  try {
+    match.end();
+    res.json({ MESSAGE: "end match" });
+  } catch (error) {
+    res.status(409).json({ ERROR: error.message });
+  }
+
   // end match
 });
 matchRoute.post("/goal", (req, res, next) => {
   res.send("gooooaaal!!!");
   match.addGoal(req.body.team);
   goalEvent.emit("goal");
-  // update score for ws frontends
-  // match.get()
 });
 matchRoute.post("/ungoal", (req, res, next) => {
   res.send("removed last goal");
-  // update score for ws frontends
-  // match.get()
 });
 
 /* roster API */
