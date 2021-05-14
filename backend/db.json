@@ -1,0 +1,35 @@
+{
+  "players": [
+    {
+      "name": "deadly dirk",
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U019E3DPLKG-933a2bc5a716-512"
+    },
+    {
+      "name": "maximum max",
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U018VCHE9PS-4c71f5ae1d5b-512"
+    },
+    {
+      "name": "advanced andi",
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-UJV5TKZE0-531f5544a457-512"
+    },
+    {
+      "name": "miraculous michael",
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U01V2AJJJNS-6e31e0a75d86-512"
+    }
+  ],
+  "match": {
+    "teams": [
+      {
+        "players": ["Max Eise", "dirk"],
+        "goals": []
+      },
+      {
+        "players": ["henk", "man"],
+        "goals": []
+      }
+    ],
+    "start": 1620911199298,
+    "end": 0
+  },
+  "pastmatches": []
+}
