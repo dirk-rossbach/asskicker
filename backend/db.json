@@ -15,16 +15,28 @@
     {
       "name": "miraculous michael",
       "avatar": "https://ca.slack-edge.com/TC4REAN2E-U01V2AJJJNS-6e31e0a75d86-512"
+    },
+    {
+      "name": "hans"
+    },
+    {
+      "name": "advanced andis"
     }
   ],
   "match": {
     "teams": [
       {
-        "players": ["Max Eise", "dirk"],
+        "players": [
+          "Max Eise",
+          "dirk"
+        ],
         "goals": []
       },
       {
-        "players": ["henk", "man"],
+        "players": [
+          "henk",
+          "man"
+        ],
         "goals": []
       }
     ],

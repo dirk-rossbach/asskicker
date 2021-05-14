@@ -83,10 +83,10 @@ rosterRoute.get("/player/:name", (req, res) => {
 rosterRoute.post("/player", (req, res) => {
   try {
     players.create(req.body.name);
+    res.json({ MESSAGE: `player ${req.body.name} created` });
   } catch (error) {
-    console.log(error);
+    res.status(409).json({ ERROR: "player already exits" });
   }
-  res.send("post player works");
 });
 rosterRoute.get("/players", (req, res) => {
   const playerList = players.getAll();
