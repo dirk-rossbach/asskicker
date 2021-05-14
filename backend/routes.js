@@ -44,7 +44,7 @@ matchRoute.post("/start", (req, res, next) => {
     }
   });
   console.log(falsePlayers);
-  if ((falsePlayers.length == 0)) {
+  if (falsePlayers.length == 0) {
     match.start(req.body);
     res.json({ MESSAGE: "start match" });
   } else {
@@ -75,11 +75,17 @@ rosterRoute.get("/player/:name", (req, res) => {
   if (player) {
     res.json(player);
   } else {
-    res.status(404).json({ ERROR: "Player not found", players: req.params.name });
+    res
+      .status(404)
+      .json({ ERROR: "Player not found", players: req.params.name });
   }
 });
 rosterRoute.post("/player", (req, res) => {
-  players.create(req.body.name);
+  try {
+    players.create(req.body.name);
+  } catch (error) {
+    console.log(error);
+  }
   res.send("post player works");
 });
 rosterRoute.get("/players", (req, res) => {
