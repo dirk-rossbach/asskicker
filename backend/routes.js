@@ -52,6 +52,10 @@ matchRoute.post("/ungoal", (req, res, next) => {
   match.removeLastGoal();
   goalEvent.emit("goalchange");
 });
+matchRoute.post('/reset', (re, res, next) => {
+  res.json({MESSAGE: "match reset"});
+  match.reset();
+})
 
 /* roster API */
 rosterRoute.get("/player/:name", (req, res) => {

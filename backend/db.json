@@ -1,23 +1,21 @@
 {
   "players": [
     {
-      "name": "deadly_dirk",
-      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U019E3DPLKG-933a2bc5a716-512"
+      "name": "deadly_dirk"
     },
     {
-      "name": "maximum_max",
-      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U018VCHE9PS-4c71f5ae1d5b-512"
+      "name": "maximum_max"
     },
     {
-      "name": "advanced_andi",
-      "avatar": "https://ca.slack-edge.com/TC4REAN2E-UJV5TKZE0-531f5544a457-512"
+      "name": "advanced_andi"
     },
     {
-      "name": "miraculous_michael",
-      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U01V2AJJJNS-6e31e0a75d86-512"
+      "name": "miraculous_michael"
     }
   ],
   "match": {
+    "start": 0,
+    "end": 0,
     "teams": [
       {
         "players": [],
@@ -27,51 +25,32 @@
         "players": [],
         "goals": []
       }
-    ],
-    "start": 0,
-    "end": 0,
-    "lastGoal": 0
+    ]
   },
-  "pastmatches": [
+  "matchArchive": [
     {
+      "start": 1621075334884,
+      "end": 1621075355020,
       "teams": [
         {
           "players": [
             "deadly_dirk",
             "maximum_max"
           ],
-          "goals": []
+          "goals": [
+            1621075340689
+          ]
         },
         {
           "players": [
             "advanced_andi",
             "miraculous_michael"
           ],
-          "goals": []
+          "goals": [
+            1621075346881
+          ]
         }
-      ],
-      "start": 1621018554718,
-      "end": 1621018559999
-    },
-    {
-      "teams": [
-        {
-          "players": [
-            "deadly_dirk",
-            "maximum_max"
-          ],
-          "goals": []
-        },
-        {
-          "players": [
-            "advanced_andi",
-            "miraculous_michael"
-          ],
-          "goals": []
-        }
-      ],
-      "start": 1621018573200,
-      "end": 1621019051151
+      ]
     }
   ]
 }

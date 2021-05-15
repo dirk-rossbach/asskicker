@@ -8,7 +8,6 @@ const db = low(adapter);
 db.defaults({
   players: [],
   match: {
-    lastGoal: undefined,
     start: 0,
     end: 0,
     teams: [
@@ -22,7 +21,7 @@ db.defaults({
       },
     ],
   },
-  pastmatches: [],
+  matchArchive: [],
 }).write();
 
 const players = {
@@ -65,12 +64,11 @@ const match = {
       throw new Error("no match running");
     }
     m.end = Date.now();
-    pastmatches.insert(_.cloneDeep(m));
+    matchArchive.insert(_.cloneDeep(m));
     match.reset();
   },
   addGoal: (team) => {
     db.get("match.teams").get(team).get("goals").push(Date.now()).write();
-    db.set("match.lastGoal", team).write();
   },
   removeLastGoal: () => {
     const goals = [];
@@ -88,7 +86,6 @@ const match = {
   reset: () => {
     db.get("match")
       .assign({
-        lastGoal: null,
         start: 0,
         end: 0,
         teams: [
@@ -107,13 +104,13 @@ const match = {
 };
 
 
-const pastmatches = {
+const matchArchive = {
   getAll: () => {
-    return db.get("pastmatches").value();
+    return db.get("matchArchive").value();
   },
   insert: (match) => {
-    db.get("pastmatches").push(match).write();
+    db.get("matchArchive").push(match).write();
   },
 };
 
-module.exports = { players, match, pastmatches };
+module.exports = { players, match, matchArchive };
