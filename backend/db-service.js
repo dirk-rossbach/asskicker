@@ -35,7 +35,7 @@ const players = {
     if (db.get("players").find({ name: name }).value()) {
       throw new Error("player exists");
     }
-    db.get("players").push({ name: name }).write();
+    db.get("players").push({ name: name, points: 0 }).write();
   },
 };
 
@@ -65,6 +65,7 @@ const match = {
     }
     m.end = Date.now();
     matchArchive.insert(_.cloneDeep(m));
+    givePoints(getWinnerTeam());
     match.reset();
   },
   addGoal: (team) => {
@@ -103,6 +104,33 @@ const match = {
   },
 };
 
+function getWinnerTeam() {
+  const team0 = db.get("match.teams").get(0);
+  const team1 = db.get("match.teams").get(1);
+  const goalsCount0 = team0.get("goals").value().length;
+  const goalsCount1 = team1.get("goals").value().length;
+  if (goalsCount0 == goalsCount1) {
+    // draw -> no points
+    return undefined;
+  } else if (goalsCount0 > goalsCount1) {
+    return team0;
+  } else {
+    return team1;
+  }
+}
+
+function givePoints(team) {
+  if (team) {
+    team
+      .get("players")
+      .value()
+      .forEach((player) => {
+        const p = db.get("players").find({ name: player });
+        const pp = p.get("points").value();
+        p.assign({ points: pp + 1 }).write();
+      });
+  }
+}
 
 const matchArchive = {
   getAll: () => {

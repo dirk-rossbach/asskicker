@@ -1,16 +1,20 @@
 {
   "players": [
     {
-      "name": "deadly_dirk"
+      "name": "deadly_dirk",
+      "points": 2
     },
     {
-      "name": "maximum_max"
+      "name": "maximum_max",
+      "points": 2
     },
     {
-      "name": "advanced_andi"
+      "name": "advanced_andi",
+      "points": 1
     },
     {
-      "name": "miraculous_michael"
+      "name": "miraculous_michael",
+      "points": 1
     }
   ],
   "match": {
@@ -29,8 +33,8 @@
   },
   "matchArchive": [
     {
-      "start": 1621075334884,
-      "end": 1621075355020,
+      "start": 1621082989463,
+      "end": 1621083002046,
       "teams": [
         {
           "players": [
@@ -38,7 +42,7 @@
             "maximum_max"
           ],
           "goals": [
-            1621075340689
+            1621082995810
           ]
         },
         {
@@ -46,8 +50,70 @@
             "advanced_andi",
             "miraculous_michael"
           ],
+          "goals": []
+        }
+      ]
+    },
+    {
+      "start": 1621083196838,
+      "end": 1621083207301,
+      "teams": [
+        {
+          "players": [
+            "deadly_dirk",
+            "maximum_max"
+          ],
+          "goals": []
+        },
+        {
+          "players": [
+            "advanced_andi",
+            "miraculous_michael"
+          ],
+          "goals": []
+        }
+      ]
+    },
+    {
+      "start": 1621083225773,
+      "end": 1621083233332,
+      "teams": [
+        {
+          "players": [
+            "deadly_dirk",
+            "maximum_max"
+          ],
           "goals": [
-            1621075346881
+            1621083229642
+          ]
+        },
+        {
+          "players": [
+            "advanced_andi",
+            "miraculous_michael"
+          ],
+          "goals": []
+        }
+      ]
+    },
+    {
+      "start": 1621083239786,
+      "end": 1621083254419,
+      "teams": [
+        {
+          "players": [
+            "deadly_dirk",
+            "maximum_max"
+          ],
+          "goals": []
+        },
+        {
+          "players": [
+            "advanced_andi",
+            "miraculous_michael"
+          ],
+          "goals": [
+            1621083244774
           ]
         }
       ]

@@ -1,7 +1,6 @@
-const e = require("express");
-const express = require("express"),
-  { players, match } = require("./db-service"),
-  QRCode = require("qrcode");
+const express = require("express");
+const { players, match } = require("./db-service");
+const QRCode = require("qrcode");
 
 const { goalEvent } = require("./event-service");
 
@@ -39,23 +38,24 @@ matchRoute.post("/end", (req, res, next) => {
     match.end();
     res.json({ MESSAGE: "end match" });
   } catch (error) {
+    console.log(error);
     res.status(409).json({ ERROR: error.message });
   }
 });
 matchRoute.post("/goal", (req, res, next) => {
-  res.json({MESSAGE: "gooooaaal!!!"});
+  res.json({ MESSAGE: "gooooaaal!!!" });
   match.addGoal(req.body.team);
   goalEvent.emit("goalchange");
 });
 matchRoute.post("/ungoal", (req, res, next) => {
-  res.json({MESSAGE: "removed last goal"});
+  res.json({ MESSAGE: "removed last goal" });
   match.removeLastGoal();
   goalEvent.emit("goalchange");
 });
-matchRoute.post('/reset', (re, res, next) => {
-  res.json({MESSAGE: "match reset"});
+matchRoute.post("/reset", (re, res, next) => {
+  res.json({ MESSAGE: "match reset" });
   match.reset();
-})
+});
 
 /* roster API */
 rosterRoute.get("/player/:name", (req, res) => {
