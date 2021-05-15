@@ -8,6 +8,7 @@ const db = low(adapter);
 db.defaults({
   players: [],
   match: {
+    lastGoal: undefined,
     start: 0,
     end: 0,
     teams: [
@@ -69,10 +70,25 @@ const match = {
   },
   addGoal: (team) => {
     db.get("match.teams").get(team).get("goals").push(Date.now()).write();
+    db.set("match.lastGoal", team).write();
+  },
+  removeLastGoal: () => {
+    const goals = [];
+    const teams = db.get("match.teams").value();
+    teams[0].goals.forEach((goal) => {
+      goals.push(goal);
+    });
+    teams[1].goals.forEach((goal) => {
+      goals.push(goal);
+    });
+    const lastGoal = goals.sort()[goals.length - 1];
+    db.get("match.teams").get(0).get("goals").pull(lastGoal).write();
+    db.get("match.teams").get(1).get("goals").pull(lastGoal).write();
   },
   reset: () => {
     db.get("match")
       .assign({
+        lastGoal: null,
         start: 0,
         end: 0,
         teams: [
@@ -89,6 +105,7 @@ const match = {
       .write();
   },
 };
+
 
 const pastmatches = {
   getAll: () => {

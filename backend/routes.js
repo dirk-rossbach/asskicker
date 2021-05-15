@@ -8,26 +8,6 @@ const { goalEvent } = require("./event-service");
 const matchRoute = express.Router();
 const rosterRoute = express.Router();
 
-/* testi
-const teams = [["andi", "max"], ["michael", "dirk"]];
-db.match.start(teams);
-
-db.match.addGoal(0);
-db.match.addGoal(1);
-db.match.addGoal(1);
-db.match.addGoal(1);
-db.match.addGoal(0);
-db.match.addGoal(1);
-db.match.addGoal(1);
-db.match.addGoal(1);
-
-console.log(db.match.get());
-
-db.match.end();
-
-console.log(db.pastmatches.getAll());
-*/
-
 /* match API */
 matchRoute.post("/start", (req, res, next) => {
   const team0 = req.body[0];
@@ -61,16 +41,16 @@ matchRoute.post("/end", (req, res, next) => {
   } catch (error) {
     res.status(409).json({ ERROR: error.message });
   }
-
-  // end match
 });
 matchRoute.post("/goal", (req, res, next) => {
-  res.send("gooooaaal!!!");
+  res.json({MESSAGE: "gooooaaal!!!"});
   match.addGoal(req.body.team);
-  goalEvent.emit("goal");
+  goalEvent.emit("goalchange");
 });
 matchRoute.post("/ungoal", (req, res, next) => {
-  res.send("removed last goal");
+  res.json({MESSAGE: "removed last goal"});
+  match.removeLastGoal();
+  goalEvent.emit("goalchange");
 });
 
 /* roster API */
