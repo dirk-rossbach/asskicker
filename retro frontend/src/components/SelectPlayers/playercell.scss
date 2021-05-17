@@ -1,0 +1,17 @@
+@import "../../styles/variables.scss";
+.playercell {   
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .indicator {
+    visibility: hidden;
+    padding: 10px;
+    color: $high_red;
+  }
+  &.active {
+    color: $high_red;
+      .indicator {
+          visibility: visible;
+      }
+  }
+}
