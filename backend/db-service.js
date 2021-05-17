@@ -4,7 +4,11 @@ const low = require("lowdb"),
   compositeOpponent = require('glicko2-composite-opponent'),
   glicko2 = require('glicko2').Glicko2;
 
-const adapter = new FileSync("db.json");
+const adapter = new FileSync("db.json"/*, {
+  serialize: JSON.stringify,
+  deserialize: JSON.parse
+}*/);
+
 const db = low(adapter);
 
 db.defaults({
@@ -102,8 +106,8 @@ const match = {
         }
       }
       players.updateMultiple(pl);
+      pastmatches.insert(_.cloneDeep(m));
     }
-    pastmatches.insert(_.cloneDeep(m));
     match.reset();
   },
   addGoal: (team) => {
