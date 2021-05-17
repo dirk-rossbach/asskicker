@@ -1,6 +1,8 @@
 const low = require("lowdb"),
   FileSync = require("lowdb/adapters/FileSync"),
-  _ = require("lodash");
+  _ = require("lodash"),
+  compositeOpponent = require('glicko2-composite-opponent'),
+  glicko2 = require('glicko2').Glicko2;
 
 const adapter = new FileSync("db.json");
 const db = low(adapter);
@@ -21,7 +23,7 @@ db.defaults({
       },
     ],
   },
-  matchArchive: [],
+  pastmatches: [],
 }).write();
 
 const players = {
@@ -35,7 +37,11 @@ const players = {
     if (db.get("players").find({ name: name }).value()) {
       throw new Error("player exists");
     }
-    db.get("players").push({ name: name, points: 0 }).write();
+    db.get("players").push({ name: name, rating: { solo: 1500, duo: 1500 } }).write();
+  },
+  updateRatings: (name, ratings) => {
+    console.log(name, ratings);
+    return db.get("players").find({ name: name }).get("rating").assign(ratings).write();
   },
 };
 
@@ -45,8 +51,11 @@ const match = {
   },
   start: (teams) => {
     let match = db.get("match").value();
-    if (match.start != 0) {
+    if (match.start && match.start != 0) {
       throw new Error("match already running");
+    }
+    if (teams.length != 2 || teams[0].length != teams[1].length) {
+      throw new Error("invalid teams");
     }
     db.get("match")
       .assign({
@@ -64,25 +73,41 @@ const match = {
       throw new Error("no match running");
     }
     m.end = Date.now();
-    matchArchive.insert(_.cloneDeep(m));
-    givePoints(getWinnerTeam());
+    const score = m.teams[0].goals.length - m.teams[1].goals.length;
+    if (score != 0) {
+      const isSolo = m.teams[0].players.length == 1;
+      const gr = new glicko2({
+        tau: 0.5,
+        rating: 1500,
+        rd: 100,
+        vol: 0.06
+      });
+      const a = m.teams[0].players.map((player) => {
+        const p = players.getByName(player);
+        const r = isSolo ? p.rating.solo : p.rating.duo;
+        return gr.makePlayer(r);
+      });
+      const b = m.teams[1].players.map((player) => {
+        const p = players.getByName(player);
+        const r = isSolo ? p.rating.solo : p.rating.duo;
+        return gr.makePlayer(r);
+      });
+      const sn = score > 0 ? 1 : 0;
+      const matches = compositeOpponent(a, b, sn);
+      gr.updateRatings(matches);
+      const pln = m.teams[0].players.concat(m.teams[1].players);
+      const plr = gr.getPlayers();
+      for (let i = 0; i < plr.length; i++) {
+        const nr = plr[i].getRating();
+        const r = isSolo ? { solo: nr } : { duo: nr };
+        players.updateRatings(pln[i], r);
+      }
+    }
+    pastmatches.insert(_.cloneDeep(m));
     match.reset();
   },
   addGoal: (team) => {
     db.get("match.teams").get(team).get("goals").push(Date.now()).write();
-  },
-  removeLastGoal: () => {
-    const goals = [];
-    const teams = db.get("match.teams").value();
-    teams[0].goals.forEach((goal) => {
-      goals.push(goal);
-    });
-    teams[1].goals.forEach((goal) => {
-      goals.push(goal);
-    });
-    const lastGoal = goals.sort()[goals.length - 1];
-    db.get("match.teams").get(0).get("goals").pull(lastGoal).write();
-    db.get("match.teams").get(1).get("goals").pull(lastGoal).write();
   },
   reset: () => {
     db.get("match")
@@ -104,41 +129,13 @@ const match = {
   },
 };
 
-function getWinnerTeam() {
-  const team0 = db.get("match.teams").get(0);
-  const team1 = db.get("match.teams").get(1);
-  const goalsCount0 = team0.get("goals").value().length;
-  const goalsCount1 = team1.get("goals").value().length;
-  if (goalsCount0 == goalsCount1) {
-    // draw -> no points
-    return undefined;
-  } else if (goalsCount0 > goalsCount1) {
-    return team0;
-  } else {
-    return team1;
-  }
-}
-
-function givePoints(team) {
-  if (team) {
-    team
-      .get("players")
-      .value()
-      .forEach((player) => {
-        const p = db.get("players").find({ name: player });
-        const pp = p.get("points").value();
-        p.assign({ points: pp + 1 }).write();
-      });
-  }
-}
-
-const matchArchive = {
+const pastmatches = {
   getAll: () => {
-    return db.get("matchArchive").value();
+    return db.get("pastmatches").value();
   },
   insert: (match) => {
-    db.get("matchArchive").push(match).write();
+    db.get("pastmatches").push(match).write();
   },
 };
 
-module.exports = { players, match, matchArchive };
+module.exports = { players, match, pastmatches };

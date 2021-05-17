@@ -1,11 +1,29 @@
-const express = require("express");
-const { players, match } = require("./db-service");
-const QRCode = require("qrcode");
+const express = require("express"),
+  { players, match } = require("./db-service"),
+  QRCode = require("qrcode");
 
 const { goalEvent } = require("./event-service");
 
 const matchRoute = express.Router();
 const rosterRoute = express.Router();
+
+/* testi
+const teams = [["advanced_andi", "maximum_max"], ["miraculous_michael", "deadly_dirk"]];
+match.start(teams);
+
+match.addGoal(0);
+match.addGoal(1);
+match.addGoal(1);
+match.addGoal(1);
+match.addGoal(0);
+match.addGoal(1);
+match.addGoal(1);
+match.addGoal(1);
+
+console.log(match.get());
+
+match.end();
+*/
 
 /* match API */
 matchRoute.post("/start", (req, res, next) => {
@@ -38,23 +56,18 @@ matchRoute.post("/end", (req, res, next) => {
     match.end();
     res.json({ MESSAGE: "end match" });
   } catch (error) {
-    console.log(error);
     res.status(409).json({ ERROR: error.message });
   }
+
+  // end match
 });
 matchRoute.post("/goal", (req, res, next) => {
-  res.json({ MESSAGE: "gooooaaal!!!" });
+  res.send("gooooaaal!!!");
   match.addGoal(req.body.team);
-  goalEvent.emit("goalchange");
+  goalEvent.emit("goal");
 });
 matchRoute.post("/ungoal", (req, res, next) => {
-  res.json({ MESSAGE: "removed last goal" });
-  match.removeLastGoal();
-  goalEvent.emit("goalchange");
-});
-matchRoute.post("/reset", (re, res, next) => {
-  res.json({ MESSAGE: "match reset" });
-  match.reset();
+  res.send("removed last goal");
 });
 
 /* roster API */

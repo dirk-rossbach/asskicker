@@ -79,7 +79,7 @@ export default function Layout() {
                   </div>
                   <div>
                     <div className="max-w-md w-full mx-auto">
-                      <Link href="/">
+                      <Link href="/new">
                         <a className="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-vita-800 bg-vita-200 hover:bg-vita-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-vita-500">
                           New Match
                         </a>
@@ -187,9 +187,6 @@ export default function Layout() {
             {/* Left column */}
             <div className="grid grid-cols-1 gap-4 lg:col-span-2">
               <section aria-labelledby="section-1-title">
-                <h2 className="sr-only" id="section-1-title">
-                  Section title
-                </h2>
                 <div className="rounded-lg bg-white overflow-hidden shadow">
                   <div className="p-6">{/* Your content */}1</div>
                 </div>
@@ -199,9 +196,6 @@ export default function Layout() {
             {/* Right column */}
             <div className="grid grid-cols-1 gap-4">
               <section aria-labelledby="section-2-title">
-                <h2 className="sr-only" id="section-2-title">
-                  Section title
-                </h2>
                 <div className="rounded-lg bg-white overflow-hidden shadow">
                   <div className="p-6">{/* Your content */}2</div>
                 </div>
@@ -210,13 +204,6 @@ export default function Layout() {
           </div>
         </div>
       </main>
-      <footer>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
-          <div className="border-t border-gray-200 py-8 text-sm text-gray-500 text-center sm:text-left">
-            <span className="block sm:inline">&copy; 2021 Tailwind Labs Inc.</span> <span className="block sm:inline">All rights reserved.</span>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .score {
+    font-size: 12em;
+  }
+}
+@layer utilities {
+  .text-gradient {
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 /* source-sans-pro-300 - latin */
 @font-face {
   font-family: "Source Sans Pro";

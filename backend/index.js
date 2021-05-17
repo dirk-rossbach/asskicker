@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { simpleCors } = require("./simpleCors");
 const { matchRoute, rosterRoute } = require("./routes");
-const { match } = require("./db-service");
+const { match, players } = require("./db-service");
 
 const { goalEvent } = require("./event-service");
 
@@ -10,7 +10,7 @@ const app = express();
 const websocket = require("express-ws")(app);
 const port = 3000;
 
-goalEvent.on("goalchange", () => {
+goalEvent.on("goal", () => {
   websocket.getWss().clients.forEach((client) => {
     client.send(JSON.stringify(getCurrentScore()));
   });

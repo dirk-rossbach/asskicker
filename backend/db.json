@@ -3,22 +3,38 @@
     {
       "name": "deadly_dirk",
       "id": "DRO",
-      "points": 2
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U019E3DPLKG-933a2bc5a716-512",
+      "rating": {
+        "solo": 1500,
+        "duo": 1500
+      }
     },
     {
       "name": "maximum_max",
       "id": "MEI",
-      "points": 1
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U018VCHE9PS-4c71f5ae1d5b-512",
+      "rating": {
+        "solo": 1500,
+        "duo": 1500
+      }
     },
     {
       "name": "advanced_andi",
       "id": "AFE",
-      "points": 5
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-UJV5TKZE0-531f5544a457-512",
+      "rating": {
+        "solo": 1500,
+        "duo": 1500
+      }
     },
     {
       "name": "miraculous_michael",
       "id": "MHE",
-      "points": 10
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U01V2AJJJNS-6e31e0a75d86-512",
+      "rating": {
+        "solo": 1500,
+        "duo": 1500
+      }
     }
   ],
   "match": {
@@ -35,92 +51,5 @@
       }
     ]
   },
-  "matchArchive": [
-    {
-      "start": 1621082989463,
-      "end": 1621083002046,
-      "teams": [
-        {
-          "players": [
-            "deadly_dirk",
-            "maximum_max"
-          ],
-          "goals": [
-            1621082995810
-          ]
-        },
-        {
-          "players": [
-            "advanced_andi",
-            "miraculous_michael"
-          ],
-          "goals": []
-        }
-      ]
-    },
-    {
-      "start": 1621083196838,
-      "end": 1621083207301,
-      "teams": [
-        {
-          "players": [
-            "deadly_dirk",
-            "maximum_max"
-          ],
-          "goals": []
-        },
-        {
-          "players": [
-            "advanced_andi",
-            "miraculous_michael"
-          ],
-          "goals": []
-        }
-      ]
-    },
-    {
-      "start": 1621083225773,
-      "end": 1621083233332,
-      "teams": [
-        {
-          "players": [
-            "deadly_dirk",
-            "maximum_max"
-          ],
-          "goals": [
-            1621083229642
-          ]
-        },
-        {
-          "players": [
-            "advanced_andi",
-            "miraculous_michael"
-          ],
-          "goals": []
-        }
-      ]
-    },
-    {
-      "start": 1621083239786,
-      "end": 1621083254419,
-      "teams": [
-        {
-          "players": [
-            "deadly_dirk",
-            "maximum_max"
-          ],
-          "goals": []
-        },
-        {
-          "players": [
-            "advanced_andi",
-            "miraculous_michael"
-          ],
-          "goals": [
-            1621083244774
-          ]
-        }
-      ]
-    }
-  ]
+  "pastmatches": []
 }
