@@ -2,19 +2,23 @@
   "players": [
     {
       "name": "deadly_dirk",
+      "id": "DRO",
       "points": 2
     },
     {
       "name": "maximum_max",
-      "points": 2
+      "id": "MEI",
+      "points": 1
     },
     {
       "name": "advanced_andi",
-      "points": 1
+      "id": "AFE",
+      "points": 5
     },
     {
       "name": "miraculous_michael",
-      "points": 1
+      "id": "MHE",
+      "points": 10
     }
   ],
   "match": {

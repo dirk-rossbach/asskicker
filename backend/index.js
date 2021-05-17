@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { simpleCors } = require("./simpleCors");
 const { matchRoute, rosterRoute } = require("./routes");
 const { match } = require("./db-service");
 
@@ -8,7 +9,6 @@ const { goalEvent } = require("./event-service");
 const app = express();
 const websocket = require("express-ws")(app);
 const port = 3000;
-
 
 goalEvent.on("goalchange", () => {
   websocket.getWss().clients.forEach((client) => {
@@ -21,6 +21,7 @@ function getCurrentScore() {
   return [teams[0].goals.length, teams[1].goals.length];
 }
 
+app.use(simpleCors);
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
