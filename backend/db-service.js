@@ -39,9 +39,8 @@ const players = {
     }
     db.get("players").push({ name: name, rating: { solo: 1500, duo: 1500 } }).write();
   },
-  updateRatings: (name, ratings) => {
-    console.log(name, ratings);
-    return db.get("players").find({ name: name }).get("rating").assign(ratings).write();
+  updateMultiple: (pl) => {
+    return db.get("players").uniqBy(pl, "name").write();
   },
 };
 
@@ -82,26 +81,27 @@ const match = {
         rd: 100,
         vol: 0.06
       });
-      const a = m.teams[0].players.map((player) => {
-        const p = players.getByName(player);
+      const a = m.teams[0].players.map(players.getByName);
+      const b = m.teams[1].players.map(players.getByName);
+      const pToR = (p) => {
         const r = isSolo ? p.rating.solo : p.rating.duo;
         return gr.makePlayer(r);
-      });
-      const b = m.teams[1].players.map((player) => {
-        const p = players.getByName(player);
-        const r = isSolo ? p.rating.solo : p.rating.duo;
-        return gr.makePlayer(r);
-      });
+      };
       const sn = score > 0 ? 1 : 0;
-      const matches = compositeOpponent(a, b, sn);
+      const matches = compositeOpponent(a.map(pToR), b.map(pToR), sn);
       gr.updateRatings(matches);
-      const pln = m.teams[0].players.concat(m.teams[1].players);
+      const pl = a.concat(b);
       const plr = gr.getPlayers();
       for (let i = 0; i < plr.length; i++) {
         const nr = plr[i].getRating();
-        const r = isSolo ? { solo: nr } : { duo: nr };
-        players.updateRatings(pln[i], r);
+        const p = pl[i].rating;
+        if (isSolo) {
+          p.solo = nr;
+        } else {
+          p.duo = nr;
+        }
       }
+      players.updateMultiple(pl);
     }
     pastmatches.insert(_.cloneDeep(m));
     match.reset();
