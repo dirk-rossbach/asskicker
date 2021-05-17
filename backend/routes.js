@@ -1,4 +1,3 @@
-const e = require("express");
 const express = require("express"),
   { players, match } = require("./db-service"),
   QRCode = require("qrcode");
@@ -8,9 +7,9 @@ const { goalEvent } = require("./event-service");
 const matchRoute = express.Router();
 const rosterRoute = express.Router();
 
-/* testi
+/* testi 
 const teams = [["advanced_andi", "maximum_max"], ["miraculous_michael", "deadly_dirk"]];
-match.start(teams);
+match.start(teamsdiff);
 
 match.addGoal(0);
 match.addGoal(1);
