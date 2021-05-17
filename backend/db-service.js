@@ -1,6 +1,8 @@
 const low = require("lowdb"),
   FileSync = require("lowdb/adapters/FileSync"),
-  _ = require("lodash");
+  _ = require("lodash"),
+  compositeOpponent = require('glicko2-composite-opponent'),
+  glicko2 = require('glicko2').Glicko2;
 
 const adapter = new FileSync("db.json");
 const db = low(adapter);
@@ -35,7 +37,11 @@ const players = {
     if (db.get("players").find({ name: name }).value()) {
       throw new Error("player exists");
     }
-    db.get("players").push({ name: name }).write();
+    db.get("players").push({ name: name, rating: { solo: 1500, duo: 1500 } }).write();
+  },
+  updateRatings: (name, ratings) => {
+    console.log(name, ratings);
+    return db.get("players").find({ name: name }).get("rating").assign(ratings).write();
   },
 };
 
@@ -45,8 +51,11 @@ const match = {
   },
   start: (teams) => {
     let match = db.get("match").value();
-    if (match.start != 0) {
+    if (match.start && match.start != 0) {
       throw new Error("match already running");
+    }
+    if (teams.length != 2 || teams[0].length != teams[1].length) {
+      throw new Error("invalid teams");
     }
     db.get("match")
       .assign({
@@ -64,6 +73,36 @@ const match = {
       throw new Error("no match running");
     }
     m.end = Date.now();
+    const score = m.teams[0].goals.length - m.teams[1].goals.length;
+    if (score != 0) {
+      const isSolo = m.teams[0].players.length == 1;
+      const gr = new glicko2({
+        tau: 0.5,
+        rating: 1500,
+        rd: 100,
+        vol: 0.06
+      });
+      const a = m.teams[0].players.map((player) => {
+        const p = players.getByName(player);
+        const r = isSolo ? p.rating.solo : p.rating.duo;
+        return gr.makePlayer(r);
+      });
+      const b = m.teams[1].players.map((player) => {
+        const p = players.getByName(player);
+        const r = isSolo ? p.rating.solo : p.rating.duo;
+        return gr.makePlayer(r);
+      });
+      const sn = score > 0 ? 1 : 0;
+      const matches = compositeOpponent(a, b, sn);
+      gr.updateRatings(matches);
+      const pln = m.teams[0].players.concat(m.teams[1].players);
+      const plr = gr.getPlayers();
+      for (let i = 0; i < plr.length; i++) {
+        const nr = plr[i].getRating();
+        const r = isSolo ? { solo: nr } : { duo: nr };
+        players.updateRatings(pln[i], r);
+      }
+    }
     pastmatches.insert(_.cloneDeep(m));
     match.reset();
   },

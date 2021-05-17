@@ -9,23 +9,21 @@ const matchRoute = express.Router();
 const rosterRoute = express.Router();
 
 /* testi
-const teams = [["andi", "max"], ["michael", "dirk"]];
-db.match.start(teams);
+const teams = [["advanced_andi", "maximum_max"], ["miraculous_michael", "deadly_dirk"]];
+match.start(teams);
 
-db.match.addGoal(0);
-db.match.addGoal(1);
-db.match.addGoal(1);
-db.match.addGoal(1);
-db.match.addGoal(0);
-db.match.addGoal(1);
-db.match.addGoal(1);
-db.match.addGoal(1);
+match.addGoal(0);
+match.addGoal(1);
+match.addGoal(1);
+match.addGoal(1);
+match.addGoal(0);
+match.addGoal(1);
+match.addGoal(1);
+match.addGoal(1);
 
-console.log(db.match.get());
+console.log(match.get());
 
-db.match.end();
-
-console.log(db.pastmatches.getAll());
+match.end();
 */
 
 /* match API */
