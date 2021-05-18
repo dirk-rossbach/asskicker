@@ -64,10 +64,12 @@ matchRoute.post("/end", (req, res, next) => {
 matchRoute.post("/goal", (req, res, next) => {
   res.send("gooooaaal!!!");
   match.addGoal(req.body.team);
-  goalEvent.emit("goal");
+  goalEvent.emit("goalchange");
 });
 matchRoute.post("/ungoal", (req, res, next) => {
-  res.send("removed last goal");
+  res.json({ MESSAGE: "removed last goal" });
+  match.removeLastGoal();
+  goalEvent.emit("goalchange");
 });
 
 /* roster API */

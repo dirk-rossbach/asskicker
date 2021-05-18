@@ -10,7 +10,7 @@ const app = express();
 const websocket = require("express-ws")(app);
 const port = 3000;
 
-goalEvent.on("goal", () => {
+goalEvent.on("goalchange", () => {
   websocket.getWss().clients.forEach((client) => {
     client.send(JSON.stringify(getCurrentScore()));
   });
