@@ -6,7 +6,7 @@
       "avatar": "https://ca.slack-edge.com/TC4REAN2E-U019E3DPLKG-933a2bc5a716-512",
       "rating": {
         "solo": 1500,
-        "duo": 1500
+        "duo": 1474.2287806692775
       }
     },
     {
@@ -15,7 +15,7 @@
       "avatar": "https://ca.slack-edge.com/TC4REAN2E-U018VCHE9PS-4c71f5ae1d5b-512",
       "rating": {
         "solo": 1500,
-        "duo": 1500
+        "duo": 1525.7712193307225
       }
     },
     {
@@ -24,7 +24,7 @@
       "avatar": "https://ca.slack-edge.com/TC4REAN2E-UJV5TKZE0-531f5544a457-512",
       "rating": {
         "solo": 1500,
-        "duo": 1500
+        "duo": 1525.7712193307225
       }
     },
     {
@@ -33,23 +33,72 @@
       "avatar": "https://ca.slack-edge.com/TC4REAN2E-U01V2AJJJNS-6e31e0a75d86-512",
       "rating": {
         "solo": 1500,
-        "duo": 1500
+        "duo": 1474.2287806692775
       }
     }
   ],
   "match": {
-    "start": 0,
+    "start": 1621320201986,
     "end": 0,
     "teams": [
       {
-        "players": [],
-        "goals": []
+        "players": [
+          "deadly_dirk",
+          "maximum_max"
+        ],
+        "goals": [
+          1621361349220,
+          1621361350320,
+          1621361350820
+        ]
       },
       {
-        "players": [],
-        "goals": []
+        "players": [
+          "advanced_andi",
+          "miraculous_michael"
+        ],
+        "goals": [
+          1621361341520,
+          1621361343590,
+          1621361344597
+        ]
       }
     ]
   },
-  "pastmatches": []
+  "pastmatches": [
+    {
+      "start": 1621262448156,
+      "end": 1621262460885,
+      "teams": [
+        {
+          "players": [
+            "miraculous_michael",
+            "deadly_dirk"
+          ],
+          "goals": [
+            1621262456742,
+            1621262457605,
+            1621262458209
+          ]
+        },
+        {
+          "players": [
+            "maximum_max",
+            "advanced_andi"
+          ],
+          "goals": [
+            1621262450953,
+            1621262451413,
+            1621262451771,
+            1621262452208,
+            1621262452393,
+            1621262452567,
+            1621262452737,
+            1621262452940,
+            1621262453116
+          ]
+        }
+      ]
+    }
+  ]
 }
