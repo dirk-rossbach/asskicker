@@ -5,6 +5,12 @@ import SelectPlayers from "./components/SelectPlayers/SelectPlayers";
 import axios from "axios";
 import RetroButton from "./components/RetroButton/Retrobutton";
 import Scoreboard from "./components/Scoreboard/Scoreboard";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -23,15 +29,22 @@ class App extends Component {
 
   render() {
     return (
-      <span>
-        <Highscore players={this.state.players} />
-        <SelectPlayers players={this.state.players}></SelectPlayers>
-        <RetroButton text="clicky"></RetroButton>
-        <RetroButton color="red" text="foo"></RetroButton>
-        <RetroButton color="green" text="foo"></RetroButton>
-        <RetroButton color="blue" text="foo"></RetroButton>
-        <Scoreboard></Scoreboard>
-      </span>
+      <Router>
+        <Switch>
+          <Route path="/foo">
+            <Highscore players={this.state.players} />
+          </Route>
+        </Switch>
+        <span>
+          <Highscore players={this.state.players} />
+          <SelectPlayers players={this.state.players}></SelectPlayers>
+          <RetroButton text="clicky"></RetroButton>
+          <RetroButton color="red" text="foo"></RetroButton>
+          <RetroButton color="green" text="foo"></RetroButton>
+          <RetroButton color="blue" text="foo"></RetroButton>
+          <Scoreboard></Scoreboard>
+        </span>
+      </Router>
     );
   }
 }
