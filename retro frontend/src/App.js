@@ -5,12 +5,25 @@ import SelectPlayers from "./components/SelectPlayers/SelectPlayers";
 import axios from "axios";
 import RetroButton from "./components/RetroButton/Retrobutton";
 import Scoreboard from "./components/Scoreboard/Scoreboard";
+import { w3cwebsocket as W3CWebSocket } from "websocket";
+
+const client = new W3CWebSocket("ws://localhost:3000/score");
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { players: [] };
   }
+
+  componentWillMount() {
+    client.onopen = () => {
+      console.log("WebSocket Client Connected");
+    };
+    client.onmessage = (message) => {
+      console.log(message);
+    };
+  }
+
   componentDidMount() {
     axios.get("http://localhost:3000/roster/players").then((res) => {
       this.setState({ players: res.data });
