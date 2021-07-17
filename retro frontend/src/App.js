@@ -1,5 +1,6 @@
 import { Component } from "react";
 import "./App.scss";
+import StartScreen from "./components/StartScreen/StartScreen";
 import Highscore from "./components/Highscore/Highscore";
 import SelectPlayers from "./components/SelectPlayers/SelectPlayers";
 import axios from "axios";
@@ -11,8 +12,6 @@ import { useHistory, BrowserRouter as Router, Switch, Route, Link } from "react-
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 const client = new W3CWebSocket("ws://localhost:3000/score");
-
-let history = useHistory();
 
 class App extends Component {
   constructor(props) {
@@ -39,17 +38,17 @@ class App extends Component {
     alert(22);
   };
 
-  StartMatch = () => {
-    history.push("/start");
+  /* StartMatch = () => {
+    //history.push("/start"); onClick={this.StartMatch}
   };
-
+*/
   render() {
     return (
       <Router>
         {/* Start Screen */}
         <Switch>
           <Route path="/start">
-            <span>Startscreen</span>
+            <StartScreen></StartScreen>
           </Route>
         </Switch>
 
@@ -57,7 +56,7 @@ class App extends Component {
         <Switch>
           <Route path="/highscore">
             <Highscore players={this.state.players} />
-            <RetroButton color="red" text="Start Match" onClick={this.StartMatch}></RetroButton>
+            <RetroButton color="red" text="Start Match"></RetroButton>
           </Route>
         </Switch>
 
