@@ -15,22 +15,35 @@ class SelectPlayers extends Component {
   render() {
     const team0 = [];
     this.state.team0.forEach((e) => {
-      team0.push(<div>{e}</div>);
+      team0.push(<span>{e}</span>);
     });
     const team1 = [];
     this.state.team1.forEach((e) => {
-      team1.push(<div>{e}</div>);
+      team1.push(<span>{e}</span>);
     });
     return (
       <div className="selectPlayers">
-        <div className="wrapper team0">{team0}</div>
-        <PlayerMatrix
-          teamChanged={this.onTeamChanged}
-          players={this.props.players}
-          team0={["dirk", "fred"]}
-          team1={["knall", "frosch"]}
-        ></PlayerMatrix>
-        <div className="wrapper team1">{team1}</div>
+        <div className="wrapper team0">
+          <table>
+            <tr>
+              <td>
+                <p>1: {team0[0]}</p>
+              </td>
+            </tr>
+            <td>2: {team0[1]}</td>
+          </table>
+        </div>
+        <PlayerMatrix teamChanged={this.onTeamChanged} players={this.props.players} team0={["dirk", "fred"]} team1={["knall", "frosch"]}></PlayerMatrix>
+        <div className="wrapper team1">
+          <table>
+            <tr>
+              <td>
+                <p>1: {team1[0]}</p>
+              </td>
+            </tr>
+            <td>2: {team1[1]}</td>
+          </table>
+        </div>
       </div>
     );
   }

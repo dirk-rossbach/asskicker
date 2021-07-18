@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./selectscreen.scss";
 
 import axios from "axios";
@@ -19,8 +20,17 @@ class SelectScreen extends Component {
   }
   render() {
     return (
-      <div class="select_wrapper">
-        <SelectPlayers players={this.state.players}></SelectPlayers>
+      <div className="select_wrapper">
+        <div className="select_rows">
+          <div className="select_element">
+            <SelectPlayers players={this.state.players}></SelectPlayers>
+          </div>
+          <div className="select_element button">
+            <Link to="/match">
+              <RetroButton color="yellow" text="Start Match"></RetroButton>
+            </Link>
+          </div>
+        </div>
         <Background />
       </div>
     );

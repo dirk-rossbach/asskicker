@@ -5,7 +5,7 @@ import ScoreScreen from "./screens/ScoreScreen/ScoreScreen";
 import SelectScreen from "./screens/SelectScreen/SelectScreen";
 import MatchScreen from "./screens/MatchScreen/MatchScreen";
 
-import { useHistory, BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useHistory, BrowserRouter as Router, Switch, Route, Redirect, Link } from "react-router-dom";
 
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
@@ -25,6 +25,13 @@ class App extends Component {
   render() {
     return (
       <Router>
+        {/* Start & Redirect */}
+        <Switch>
+          <Route path="/">
+            <Redirect exact from="/" to="/start" />
+          </Route>
+        </Switch>
+
         {/* Start Screen */}
         <Switch>
           <Route path="/start">

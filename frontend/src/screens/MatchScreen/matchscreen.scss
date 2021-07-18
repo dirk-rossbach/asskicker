@@ -1,4 +1,21 @@
 .players {
   display: flex;
   justify-content: center;
+
+  table {
+    width: 100%;
+    margin: 20px 25px 25px 25px;
+    .heading {
+      font-size: 16px;
+    }
+    .player {
+      font-size: 22px;
+    }
+    .left {
+      text-align: left;
+    }
+    .right {
+      text-align: right;
+    }
+  }
 }

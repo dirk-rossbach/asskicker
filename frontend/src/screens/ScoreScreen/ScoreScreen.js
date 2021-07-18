@@ -20,15 +20,14 @@ class ScoreScreen extends Component {
   render() {
     return (
       <div className="score_wrapper">
-        <header>
-          <h1 className="blink_me">TOP 10 HIGHSCORES</h1>
-          <Highscore players={this.state.players} />
-          <Link to="/select">
-            <RetroButton color="red" text="Start Match" target="select"></RetroButton>
-          </Link>
+        <h1 className="">HIGH SCORES</h1>
 
-          <Background darken="50" />
-        </header>
+        <Highscore players={this.state.players} />
+        <Link to="/select">
+          <RetroButton color="yellow" text="Select Players" target="select"></RetroButton>
+        </Link>
+
+        <Background darken="50" />
       </div>
     );
   }

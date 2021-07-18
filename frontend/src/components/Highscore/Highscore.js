@@ -12,8 +12,8 @@ class Highscore extends Component {
         players.push(
           <tr key={index} className={index < 3 ? "top3" : ""}>
             <td>{index + 1}</td>
-            <td>{player.id}</td>
             <td>{rating_duo}</td>
+            <td>{player.id}</td>
           </tr>
         );
       });
@@ -23,8 +23,8 @@ class Highscore extends Component {
           <thead>
             <tr className="header">
               <th>RANK</th>
+              <th>SCORE</th>
               <th>NAME</th>
-              <th>POINTS</th>
             </tr>
           </thead>
           <tbody>{players}</tbody>

@@ -13,13 +13,17 @@ class MatchScreen extends Component {
           <Scoreboard></Scoreboard>
           <div className="players">
             <table>
-              <tr>
-                <td>1</td>
-                <td>2</td>
+              <tr className="">
+                <td className="left heading">Team 1</td>
+                <td className="right heading">Team 2</td>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>2</td>
+              <tr className="team2">
+                <td className="left player">Player 11</td>
+                <td className="right player">Player 21</td>
+              </tr>
+              <tr className="team2">
+                <td className="left player">Player 12</td>
+                <td className="right player">Player 22</td>
               </tr>
             </table>
           </div>
