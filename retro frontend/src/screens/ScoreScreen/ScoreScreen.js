@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./scorescreen.scss";
 import axios from "axios";
 
 import Highscore from "../../components/Highscore/Highscore";
 import RetroButton from "../../components/RetroButton/Retrobutton";
+import Background from "../../components/Background/Background";
 
 class ScoreScreen extends Component {
   constructor(props) {
@@ -17,9 +19,16 @@ class ScoreScreen extends Component {
   }
   render() {
     return (
-      <div class="score_wrapper">
-        <Highscore players={this.state.players} />
-        <RetroButton color="red" text="Start Match"></RetroButton>
+      <div className="score_wrapper">
+        <header>
+          <h1 className="blink_me">TOP 10 HIGHSCORES</h1>
+          <Highscore players={this.state.players} />
+          <Link to="/select">
+            <RetroButton color="red" text="Start Match" target="select"></RetroButton>
+          </Link>
+
+          <Background darken="50" />
+        </header>
       </div>
     );
   }
