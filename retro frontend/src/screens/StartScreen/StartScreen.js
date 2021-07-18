@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, withRouter } from "react-router-dom";
 
-import Logo from "../Logo/Logo";
+import Logo from "../../components/Logo/Logo";
 import "./startscreen.scss";
 import video from "../../styles/arcade_video.mp4";
 
@@ -12,12 +12,12 @@ class StartScreen extends React.Component {
   }
 
   handleClick = () => {
-    this.props.history.push("/highscore");
+    this.props.history.push("/scores");
   };
 
   render() {
     return (
-      <div className="wrapper" onClick={this.handleClick}>
+      <div className="" onClick={this.handleClick}>
         <div class="video">
           <video className="video_tag" autoPlay loop playsInline muted>
             <source src={video} type="video/mp4" />

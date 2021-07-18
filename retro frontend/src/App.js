@@ -1,11 +1,9 @@
 import { Component } from "react";
 import "./App.scss";
-import StartScreen from "./components/StartScreen/StartScreen";
-import Highscore from "./components/Highscore/Highscore";
-import SelectPlayers from "./components/SelectPlayers/SelectPlayers";
-import axios from "axios";
-import RetroButton from "./components/RetroButton/Retrobutton";
-import Scoreboard from "./components/Scoreboard/Scoreboard";
+import StartScreen from "./screens/StartScreen/StartScreen";
+import ScoreScreen from "./screens/ScoreScreen/ScoreScreen";
+import SelectScreen from "./screens/SelectScreen/SelectScreen";
+import MatchScreen from "./screens/MatchScreen/MatchScreen";
 
 import { useHistory, BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -14,11 +12,7 @@ import { w3cwebsocket as W3CWebSocket } from "websocket";
 const client = new W3CWebSocket("ws://localhost:3000/score");
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { players: [] };
-  }
-
+  /* Connect Websocket with Backend */
   componentWillMount() {
     client.onopen = () => {
       console.log("WebSocket Client Connected");
@@ -28,20 +22,6 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    axios.get("http://localhost:3000/roster/players").then((res) => {
-      this.setState({ players: res.data });
-    });
-  }
-  handleClick = (e) => {
-    console.log(111);
-    alert(22);
-  };
-
-  /* StartMatch = () => {
-    //history.push("/start"); onClick={this.StartMatch}
-  };
-*/
   render() {
     return (
       <Router>
@@ -54,35 +34,24 @@ class App extends Component {
 
         {/* Highscore & Start Match Screen */}
         <Switch>
-          <Route path="/highscore">
-            <Highscore players={this.state.players} />
-            <RetroButton color="red" text="Start Match"></RetroButton>
+          <Route path="/scores">
+            <ScoreScreen></ScoreScreen>
           </Route>
         </Switch>
 
         {/* Select Players Screen */}
         <Switch>
           <Route path="/select">
-            <SelectPlayers players={this.state.players}></SelectPlayers>
-            <RetroButton color="red" text="foo"></RetroButton>
-            <RetroButton color="green" text="foo"></RetroButton>
-            <RetroButton color="blue" text="foo"></RetroButton>
-            <RetroButton text="clicky"></RetroButton>
+            <SelectScreen></SelectScreen>
           </Route>
         </Switch>
 
         {/* Match Screen */}
         <Switch>
           <Route path="/match">
-            <Scoreboard></Scoreboard>
-            <RetroButton color="red" text="foo"></RetroButton>
-            <RetroButton color="green" text="foo"></RetroButton>
-            <RetroButton color="blue" text="foo"></RetroButton>
-            <RetroButton text="clicky"></RetroButton>
+            <MatchScreen></MatchScreen>
           </Route>
         </Switch>
-
-        <span></span>
       </Router>
     );
   }
