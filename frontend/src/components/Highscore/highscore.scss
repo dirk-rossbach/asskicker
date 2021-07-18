@@ -1,0 +1,16 @@
+@import "../../styles/variables.scss";
+
+.highscores {
+  text-align: left;
+}
+.top3 {
+  color: $high_magenta;
+}
+.header {
+  color: $high_red;
+}
+th,
+td {
+  padding: 5px 15px;
+  text-align: left;
+}
