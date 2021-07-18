@@ -2,12 +2,27 @@
 
 .highscores {
   text-align: left;
+  margin: 15px 0px 15px 0px;
+}
+
+.border {
+  border-bottom: 3px dashed white;
+  border-top: 3px dashed white;
+  margin-bottom: 25px;
 }
 .top3 {
-  color: $high_magenta;
+  color: $white;
+  td:first-child {
+    color: $yellow;
+  }
+  td:last-child {
+    color: $yellow;
+  }
 }
 .header {
-  color: $high_red;
+  margin-bottom: 10px;
+  font-size: 25px;
+  color: $white;
 }
 th,
 td {

@@ -19,16 +19,18 @@ class Highscore extends Component {
       });
     return (
       <span className="">
-        <table className="highscores">
-          <thead>
-            <tr className="header">
-              <th>RANK</th>
-              <th>SCORE</th>
-              <th>NAME</th>
-            </tr>
-          </thead>
-          <tbody>{players}</tbody>
-        </table>
+        <div className="border">
+          <table className="highscores">
+            <thead>
+              <tr className="header">
+                <th>RANK</th>
+                <th>SCORE</th>
+                <th>NAME</th>
+              </tr>
+            </thead>
+            <tbody>{players}</tbody>
+          </table>
+        </div>
       </span>
     );
   }
