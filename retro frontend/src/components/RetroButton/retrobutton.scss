@@ -25,4 +25,14 @@
   &.blue {
     @include retrobutton($high_blue);
   }
+  &.black {
+    @include retrobutton($black);
+    color: $white;
+    border: 3px solid $white;
+    &:hover {
+      background-color: $white;
+      color: black;
+      cursor: pointer;
+    }
+  }
 }

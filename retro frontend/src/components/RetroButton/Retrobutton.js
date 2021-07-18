@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import "./retrobutton.scss";
 
 class RetroButton extends Component {
-  handleClick = () => {
-    this.props.onClick();
-  };
+  handleClick = () => {};
   render() {
     return (
       <button onClick={this.handleClick} className={"retrobutton " + this.props.color}>
