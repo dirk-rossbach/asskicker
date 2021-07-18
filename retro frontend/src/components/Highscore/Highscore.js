@@ -8,17 +8,17 @@ class Highscore extends Component {
       .sort(this.compareByPoints)
       .reverse()
       .forEach((player, index) => {
+        let rating_duo = player.rating.duo.toFixed(2);
         players.push(
           <tr key={index} className={index < 3 ? "top3" : ""}>
             <td>{index + 1}</td>
             <td>{player.id}</td>
-            <td>{player.rating.duo}</td>
+            <td>{rating_duo}</td>
           </tr>
         );
       });
     return (
-      <span>
-        <h1 className="blink_me">TOP 10 HIGHSCORES</h1>
+      <span className="">
         <table className="highscores">
           <thead>
             <tr className="header">
