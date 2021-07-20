@@ -6,6 +6,7 @@ import SelectScreen from "./screens/SelectScreen/SelectScreen";
 import MatchScreen from "./screens/MatchScreen/MatchScreen";
 
 import { useHistory, BrowserRouter as Router, Switch, Route, Redirect, Link } from "react-router-dom";
+import MobileGameScreen from "./screens/MobileGameScreen/MobileGameScreen";
 
 class App extends Component {
   render() {
@@ -44,6 +45,14 @@ class App extends Component {
         <Switch>
           <Route path="/match">
             <MatchScreen></MatchScreen>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/match/b">
+            <MobileGameScreen team="black"></MobileGameScreen>
+          </Route>
+          <Route path="/match/y">
+            <MobileGameScreen team="yellow"></MobileGameScreen>
           </Route>
         </Switch>
       </Router>
