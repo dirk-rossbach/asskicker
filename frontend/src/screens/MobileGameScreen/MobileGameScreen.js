@@ -9,16 +9,19 @@ import Scoreboard from "../../components/Scoreboard/Scoreboard";
 
 class MobileGameScreen extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { score: [] };
+    }
+
     client = new W3CWebSocket("ws://localhost:3000/score");
 
     componentDidMount() {
         // Fire if error
         this.client.onerror = () => {
-            console.log("Connection Error");
         };
         // When connection is established
         this.client.onopen = () => {
-            console.log("Client connected");
             // Send inital score value
             this.client.send("0");
         };
@@ -31,7 +34,11 @@ class MobileGameScreen extends Component {
     }
     render() {
         return (
-            <Scoreboard score1="1" score2="5"></Scoreboard>
+            <React.Fragment>
+                <span>{this.props.team}</span>
+                <Scoreboard score1="1" score2="5"></Scoreboard>
+                <RetroButton text="GOAL"></RetroButton>
+            </React.Fragment>
         );
     }
 }

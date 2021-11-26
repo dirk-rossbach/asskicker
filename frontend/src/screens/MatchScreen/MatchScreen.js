@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { useEffect, useState } from "react";
+import React from "react";
+import { useState } from "react";
 import "./matchscreen.scss";
 
 import Scoreboard from "../../components/Scoreboard/Scoreboard";
@@ -12,13 +12,13 @@ import axios from "axios";
 const client = new W3CWebSocket("ws://localhost:3000/score");
 
 // Endpoint for GET Players
-const endpoint = "http://localhost:3000/roster/players";
+//const endpoint = "http://localhost:3000/roster/players";
 
-const GetPlayers = () => {
+/* const GetPlayers = () => {
   axios.get("http://localhost:3000/roster/players").then((res) => {
     this.setState({ players: res.data });
   });
-};
+}; */
 
 // Team YELLOW = team0
 // Team BLACK = team1
@@ -131,7 +131,6 @@ export default function Match({ data }) {
             }}
           ></RetroButton>
         </div>
-        <Background />
       </div>
     </div>
   );

@@ -35,6 +35,42 @@
         "solo": 1500,
         "duo": 1474.2287806692775
       }
+    },
+    {
+      "name": "deadly_dirk",
+      "id": "DR2",
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U019E3DPLKG-933a2bc5a716-512",
+      "rating": {
+        "solo": 1500,
+        "duo": 1474.2287806692775
+      }
+    },
+    {
+      "name": "maximum_max",
+      "id": "ME2",
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U018VCHE9PS-4c71f5ae1d5b-512",
+      "rating": {
+        "solo": 1500,
+        "duo": 1525.7712193307225
+      }
+    },
+    {
+      "name": "advanced_andi",
+      "id": "AF2",
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-UJV5TKZE0-531f5544a457-512",
+      "rating": {
+        "solo": 1500,
+        "duo": 1525.7712193307225
+      }
+    },
+    {
+      "name": "miraculous_michael",
+      "id": "MH2",
+      "avatar": "https://ca.slack-edge.com/TC4REAN2E-U01V2AJJJNS-6e31e0a75d86-512",
+      "rating": {
+        "solo": 1500,
+        "duo": 1474.2287806692775
+      }
     }
   ],
   "match": {

@@ -7,10 +7,10 @@ export default class PlayerMatrix extends Component {
     super(props);
     this.textInput = null;
     this.state = {
-      active: 0,
-      players: this.props.players,
-    };
-  }
+      players: []
+    }
+  };
+
   setTextInputRef = (element) => {
     this.textInput = element;
   };
@@ -23,26 +23,12 @@ export default class PlayerMatrix extends Component {
           .textContent,
       });
     }
-    //UP
-    if (e.keyCode === 38) {
-      if (this.state.active === 0) {
-        return;
-      }
-      this.setState({ active: this.state.active - 1 });
-    }
     //RIGHT
     if (e.keyCode === 39) {
       this.props.teamChanged({
         team1: document.querySelector(".active.playercell .playerID")
           .textContent,
       });
-    }
-    //DOWN
-    if (e.keyCode === 40) {
-      if (this.state.active === this.state.players.length - 1) {
-        return;
-      }
-      this.setState({ active: this.state.active + 1 });
     }
   };
 
@@ -62,12 +48,16 @@ export default class PlayerMatrix extends Component {
     );
     this.setState({ players: filtered });
   }
+  onPlayerSelected = (teamId, player) => {
+    this.props.teamChanged(teamId, player);
+  }
 
   render() {
     const players = [];
     this.state.players.forEach((player, index) => {
       players.push(
         <PlayerCell
+          playerSelected={this.onPlayerSelected}
           active={index === this.state.active}
           key={"player_" + index}
           player={player}
@@ -76,15 +66,15 @@ export default class PlayerMatrix extends Component {
     });
     return (
       <div>
-        <input
+        {/* <input
           maxLength="3"
           ref={this.setTextInputRef}
           onChange={this.handleChange}
-        ></input>
+        ></input> */}
         <div
           tabIndex="0"
           className="playermatrix"
-          onKeyDown={this.handleKeyPress}
+          /* onKeyDown={this.handleKeyPress} */
         >
           {players}
         </div>
@@ -92,3 +82,4 @@ export default class PlayerMatrix extends Component {
     );
   }
 }
+

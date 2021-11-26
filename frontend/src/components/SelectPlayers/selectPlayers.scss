@@ -5,3 +5,14 @@
   border: 3px solid white;
   width: 300px;
 }
+.removePlayer {
+  margin: 0 10px;
+  background-color: white;
+  display: inline-flex;
+  width: 27px;
+  color: black;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

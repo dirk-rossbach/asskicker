@@ -6,7 +6,6 @@ import axios from "axios";
 
 import SelectPlayers from "../../components/SelectPlayers/SelectPlayers";
 import RetroButton from "../../components/RetroButton/Retrobutton";
-import Background from "../../components/Background/Background";
 
 class SelectScreen extends Component {
   constructor(props) {
@@ -31,7 +30,6 @@ class SelectScreen extends Component {
             </Link>
           </div>
         </div>
-        <Background />
       </div>
     );
   }

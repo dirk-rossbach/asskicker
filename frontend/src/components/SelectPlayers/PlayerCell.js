@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import "./playercell.scss";
 
 export default class PlayerCell extends Component {
+
+  addToTeam = (teamId) => {
+    this.props.playerSelected(teamId, this.props.player);
+  }
   render() {
-    const classes = this.props.active === true ? "active playercell" : "playercell";
     return (
-      <div class="player_cell_wrapper">
-        <span className={classes}>
-          <span className="indicator">&lt;</span>
-          <span className="playerID">{this.props.player.id}</span>
-          <span className="indicator">&gt;</span>
-        </span>
+      <div className ="player_cell_wrapper">
+        <div className="playerName">{this.props.player.id}</div>
+        <div className="teamSelectButton" onClick={(e) => this.addToTeam(0, e)} style={{ backgroundColor: process.env.REACT_APP_TEAM1_COLOR }}>&lt;</div>
+        <div className="teamSelectButton" onClick={(e) => this.addToTeam(1, e)} style={{ backgroundColor: process.env.REACT_APP_TEAM2_COLOR }}>&gt;</div>
       </div>
-    );
+    )
   }
 }

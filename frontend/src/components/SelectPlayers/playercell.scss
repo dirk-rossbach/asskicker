@@ -3,19 +3,22 @@
   display: flex;
   justify-content: center;
 }
-.playercell {
+
+.player_cell_wrapper {
+  background-color: rgb(120, 120, 120);
+ /*  border: 2px solid black; */
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  .indicator {
-    visibility: hidden;
-    padding: 10px;
-    color: $white;
+  flex-wrap: wrap;
+  width: 100px;
+  margin: 10px;
+  .playerName {
+    flex-basis: 100%
   }
-  &.active {
-    color: $yellow;
-    .indicator {
-      visibility: visible;
-    }
+  .teamSelectButton {
+    flex-basis: 50px;
+    height: 25px;
+    cursor: pointer;
   }
+  
+
 }
