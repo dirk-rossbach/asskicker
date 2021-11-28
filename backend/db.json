@@ -6,7 +6,7 @@
       "avatar": "https://ca.slack-edge.com/TC4REAN2E-U019E3DPLKG-933a2bc5a716-512",
       "rating": {
         "solo": 1500,
-        "duo": 1474.2287806692775
+        "duo": 1501.8287289762673
       }
     },
     {
@@ -15,7 +15,7 @@
       "avatar": "https://ca.slack-edge.com/TC4REAN2E-U018VCHE9PS-4c71f5ae1d5b-512",
       "rating": {
         "solo": 1500,
-        "duo": 1525.7712193307225
+        "duo": 1549.7318714973667
       }
     },
     {
@@ -24,7 +24,7 @@
       "avatar": "https://ca.slack-edge.com/TC4REAN2E-UJV5TKZE0-531f5544a457-512",
       "rating": {
         "solo": 1500,
-        "duo": 1525.7712193307225
+        "duo": 1498.1712710237327
       }
     },
     {
@@ -33,7 +33,7 @@
       "avatar": "https://ca.slack-edge.com/TC4REAN2E-U01V2AJJJNS-6e31e0a75d86-512",
       "rating": {
         "solo": 1500,
-        "duo": 1474.2287806692775
+        "duo": 1450.2681285026333
       }
     },
     {
@@ -74,34 +74,16 @@
     }
   ],
   "match": {
-    "start": 1621320201986,
+    "start": 0,
     "end": 0,
     "teams": [
       {
-        "players": [
-          "deadly_dirk",
-          "maximum_max"
-        ],
-        "goals": [
-          1621361349220,
-          1621361350320,
-          1621361350820,
-          1626440998404,
-          1626764442384,
-          1626764444045,
-          1626764501255
-        ]
+        "players": [],
+        "goals": []
       },
       {
-        "players": [
-          "advanced_andi",
-          "miraculous_michael"
-        ],
-        "goals": [
-          1621361341520,
-          1621361343590,
-          1621361344597
-        ]
+        "players": [],
+        "goals": []
       }
     ]
   },
@@ -136,6 +118,38 @@
             1621262452737,
             1621262452940,
             1621262453116
+          ]
+        }
+      ]
+    },
+    {
+      "start": 1621320201986,
+      "end": 1637938039095,
+      "teams": [
+        {
+          "players": [
+            "deadly_dirk",
+            "maximum_max"
+          ],
+          "goals": [
+            1621361349220,
+            1621361350320,
+            1621361350820,
+            1626440998404,
+            1626764442384,
+            1626764444045,
+            1626764501255
+          ]
+        },
+        {
+          "players": [
+            "advanced_andi",
+            "miraculous_michael"
+          ],
+          "goals": [
+            1621361341520,
+            1621361343590,
+            1621361344597
           ]
         }
       ]

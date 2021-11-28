@@ -7,36 +7,18 @@ const { goalEvent } = require("./event-service");
 const matchRoute = express.Router();
 const rosterRoute = express.Router();
 
-/* testi 
-const teams = [["advanced_andi", "maximum_max"], ["miraculous_michael", "deadly_dirk"]];
-match.start(teamsdiff);
-
-match.addGoal(0);
-match.addGoal(1);
-match.addGoal(1);
-match.addGoal(1);
-match.addGoal(0);
-match.addGoal(1);
-match.addGoal(1);
-match.addGoal(1);
-
-console.log(match.get());
-
-match.end();
-*/
-
 /* match API */
 matchRoute.post("/start", (req, res, next) => {
   const team0 = req.body[0];
   const team1 = req.body[1];
   let falsePlayers = [];
   team0.forEach((player) => {
-    if (!players.getByName(player)) {
+    if (!players.getById(player.id)) {
       falsePlayers.push(player);
     }
   });
   team1.forEach((player) => {
-    if (!players.getByName(player)) {
+    if (!players.getById(player.id)) {
       falsePlayers.push(player);
     }
   });
@@ -69,6 +51,9 @@ matchRoute.post("/goal", (req, res, next) => {
 matchRoute.post("/ungoal", (req, res, next) => {
   res.send("removed last goal");
 });
+matchRoute.get("/current", (req, res, next) => {
+  res.json(match.get());
+})
 
 /* roster API */
 rosterRoute.get("/player/:name", (req, res) => {

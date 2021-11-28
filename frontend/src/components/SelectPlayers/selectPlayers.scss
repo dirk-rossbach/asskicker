@@ -1,9 +1,14 @@
 .selectPlayers {
   display: flex;
+  min-height: 400px;
 }
 .wrapper {
   border: 3px solid white;
   width: 300px;
+  background-color: rgba(50, 0, 50, 0.9);
+  .teamName {
+    padding: 10px;
+  }
 }
 .removePlayer {
   margin: 0 10px;

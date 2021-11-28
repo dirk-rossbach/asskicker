@@ -3,7 +3,6 @@ import { useState } from "react";
 import "./matchscreen.scss";
 
 import Scoreboard from "../../components/Scoreboard/Scoreboard";
-import Background from "../../components/Background/Background";
 import RetroButton from "../../components/RetroButton/Retrobutton";
 
 import { w3cwebsocket as W3CWebSocket } from "websocket";
@@ -24,23 +23,19 @@ const client = new W3CWebSocket("ws://localhost:3000/score");
 // Team BLACK = team1
 
 export default function Match({ data }) {
-  console.log(data);
   const [score1, setScore1] = useState(0);
   const [score2, setScore2] = useState(0);
 
   // Handle ADD Goals on Button clicks
   const AddGoal = (team) => {
-    console.log("Goal for team ", team);
     // POST Goal with team either 0 or 1
     axios
       .post("http://localhost:3000/match/goal", {
         team: team,
       })
       .then(function (response) {
-        console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
       });
 
     if (team === "1") {
@@ -48,42 +43,34 @@ export default function Match({ data }) {
     } else if (team === "2") {
       //setScore2(score2 + 1);
     } else {
-      console.log("Error in Team number");
     }
   };
   // Handle REMOVE Goals on Button clicks
   const UnGoal = (team) => {
-    console.log("Ungoal for team ", team);
     // POST Ungoal
     axios
       .post("http://localhost:3000/match/ungoal", {
         team: team,
       })
       .then(function (response) {
-        console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
       });
     if (team === "1" && score1[0] >= 0) {
       //setScore1(score1 - 1);
     } else if (team === "2" && score2[0] >= 0) {
       //setScore2(score1 - 1);
     } else {
-      console.log("Error in Team number");
     }
   };
   const setScore = (team0, team1) => {
-    console.log(team0, team1);
   };
 
   // Fire if error
   client.onerror = () => {
-    console.log("Connection Error");
   };
   // When connection is established
   client.onopen = () => {
-    console.log("Client connected");
     // Send inital score value
     client.send("0");
   };
@@ -91,7 +78,6 @@ export default function Match({ data }) {
     if (typeof e.data === "string") {
       setScore1(e.data[1]);
       setScore2(e.data[3]);
-      console.log("Received: ", e.data);
     }
   };
 

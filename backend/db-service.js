@@ -37,6 +37,9 @@ const players = {
   getByName: (name) => {
     return db.get("players").find({ name: name }).value();
   },
+  getById: (id) => {
+    return db.get("players").find({ id: id }).value();
+  },
   create: (name) => {
     if (db.get("players").find({ name: name }).value()) {
       throw new Error("player exists");

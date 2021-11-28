@@ -26,9 +26,9 @@ class SelectPlayers extends Component {
     } else if (teamId === 1) {
       const team = this.state.team1;
       team.push(player);
-      this.setState({ team1: team, allPlayers: allP })
+      this.setState({ team1: team, allPlayers: allP });
     }
-
+    this.props.onTeamsChanged(this.state.team0, this.state.team1);
   };
 
   removePlayer = (teamId, player) => {
@@ -44,7 +44,8 @@ class SelectPlayers extends Component {
     const allP = this.state.allPlayers;
     allP.push(player);
     allP.sort(this.comparePlayers);
-    this.setState({ allPlayers: allP })
+    this.setState({ allPlayers: allP });
+    this.props.onTeamsChanged(this.state.team0, this.state.team1);
   }
 
   comparePlayers = (a, b) => {
@@ -72,12 +73,18 @@ class SelectPlayers extends Component {
     return (
       <div className="selectPlayers">
         <div className="wrapper team0">
-          <div>team 0</div>
+          <div className="teamName"
+            style={{ backgroundColor: process.env.REACT_APP_TEAM1_BGCOLOR, color: process.env.REACT_APP_TEAM1_COLOR }}>
+            TEAM 1
+          </div>
           <div>{team0}</div>
         </div>
         <PlayerMatrix teamChanged={this.onTeamChanged} players={this.state.allPlayers}></PlayerMatrix>
         <div className="wrapper team1">
-          <div>team 1</div>
+          <div className="teamName"
+            style={{ backgroundColor: process.env.REACT_APP_TEAM2_BGCOLOR, color: process.env.REACT_APP_TEAM2_COLOR }}>
+            TEAM 2
+          </div>
           <div>{team1}</div>
         </div>
       </div>

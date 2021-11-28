@@ -1,24 +1,20 @@
-@import "../../styles/variables.scss";
+@import '../../styles/variables.scss';
 .player_cell_wrapper {
+  height: 50px;
   display: flex;
   justify-content: center;
-}
-
-.player_cell_wrapper {
-  background-color: rgb(120, 120, 120);
- /*  border: 2px solid black; */
+  background-color: white;
+  color: black;
   display: flex;
   flex-wrap: wrap;
   width: 100px;
   margin: 10px;
   .playerName {
-    flex-basis: 100%
+    flex-basis: 100%;
   }
   .teamSelectButton {
     flex-basis: 50px;
     height: 25px;
     cursor: pointer;
   }
-  
-
 }

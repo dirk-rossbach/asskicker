@@ -1,37 +1,53 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import "./selectscreen.scss";
 
 import axios from "axios";
 
 import SelectPlayers from "../../components/SelectPlayers/SelectPlayers";
 import RetroButton from "../../components/RetroButton/Retrobutton";
+import Background from "../../components/Background/Background";
 
-class SelectScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { players: [] };
+function SelectScreen() {
+  const team0 = useRef([]);
+  const team1 = useRef([]);
+  const teamsChanged = (t0, t1) => {
+    team0.current = t0;
+    team1.current = t1;
   }
-  componentDidMount() {
+  let [players, setPlayers] = useState([]);
+  const history = useHistory();
+  useEffect(() => {
     axios.get("http://localhost:3000/roster/players").then((res) => {
-      this.setState({ players: res.data });
+      setPlayers(res.data);
+    });
+  }, [])
+
+
+  const startMatch = () => {
+    axios.post("http://localhost:3000/match/start", [team0.current, team1.current]).then(res => {
+      history.push("/match");
     });
   }
-  render() {
-    return (
-      <div className="select_wrapper">
-        <div className="select_rows">
-          <div className="select_element">
-            <SelectPlayers players={this.state.players}></SelectPlayers>
-          </div>
-          <div className="select_element button">
-            <Link to="/match">
-              <RetroButton color="yellow" text="Start Match"></RetroButton>
-            </Link>
-          </div>
+
+  return (
+    <div className="select_wrapper">
+      <div className="select_rows">
+        <div className="select_element">
+          <SelectPlayers onTeamsChanged={teamsChanged} players={players}></SelectPlayers>
+        </div>
+        <div className="select_element button">
+          <span onClick={startMatch}>
+            <RetroButton color="yellow" text="Start Match"></RetroButton>
+          </span>
         </div>
       </div>
-    );
-  }
+      <Background darken="50" />
+    </div>
+  );
+
 }
+
+
+
 export default SelectScreen;

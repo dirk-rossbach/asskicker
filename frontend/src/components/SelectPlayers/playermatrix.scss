@@ -2,18 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   width: 360px;
-  &:focus:not(.focus-visible) {
-    outline: lightgreen solid 2px;
+  height: 100%;
+  padding: 20px;
+  align-content: center;
+  input {
+    background: none;
+    border: 3px solid white;
+    width: 175px;
   }
-
-  /* Optional: Customize .focus-visible */
-  &.focus-visible {
-    outline: lightgreen solid 2px;
-  }
-}
-
-input {
-  background: none;
-  border: 3px solid white;
-  width: 175px;
 }
