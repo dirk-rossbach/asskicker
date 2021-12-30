@@ -74,15 +74,55 @@
     }
   ],
   "match": {
-    "start": 0,
+    "start": 1640089652957,
     "end": 0,
     "teams": [
       {
-        "players": [],
-        "goals": []
+        "players": [
+          {
+            "name": "advanced_andi",
+            "id": "AF2",
+            "avatar": "https://ca.slack-edge.com/TC4REAN2E-UJV5TKZE0-531f5544a457-512",
+            "rating": {
+              "solo": 1500,
+              "duo": 1525.7712193307225
+            }
+          },
+          {
+            "name": "deadly_dirk",
+            "id": "DR2",
+            "avatar": "https://ca.slack-edge.com/TC4REAN2E-U019E3DPLKG-933a2bc5a716-512",
+            "rating": {
+              "solo": 1500,
+              "duo": 1474.2287806692775
+            }
+          }
+        ],
+        "goals": [
+          1640780784661
+        ]
       },
       {
-        "players": [],
+        "players": [
+          {
+            "name": "deadly_dirk",
+            "id": "DRO",
+            "avatar": "https://ca.slack-edge.com/TC4REAN2E-U019E3DPLKG-933a2bc5a716-512",
+            "rating": {
+              "solo": 1500,
+              "duo": 1501.8287289762673
+            }
+          },
+          {
+            "name": "miraculous_michael",
+            "id": "MHE",
+            "avatar": "https://ca.slack-edge.com/TC4REAN2E-U01V2AJJJNS-6e31e0a75d86-512",
+            "rating": {
+              "solo": 1500,
+              "duo": 1450.2681285026333
+            }
+          }
+        ],
         "goals": []
       }
     ]

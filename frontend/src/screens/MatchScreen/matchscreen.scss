@@ -1,21 +1,43 @@
-.players {
+.scoreboard {
   display: flex;
-  justify-content: center;
-
-  table {
-    width: 100%;
-    margin: 20px 25px 25px 25px;
-    .heading {
-      font-size: 16px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  min-width: 600px;
+  background-color: black;
+  padding: 20px;
+  border: 20px solid white;
+  .score {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 150px;
+    align-items: end;
+    .colon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .top,
+      .bottom {
+        margin: 10px;
+        width: 20px;
+        height: 20px;
+        display: block;
+        background-color: #fff;
+      }
     }
-    .player {
-      font-size: 22px;
+  }
+  .players {
+    display: flex;
+    justify-content: space-between;
+    .team {
+      display: flex;
+      flex-direction: column;
+      .playerName {
+        display: flex;
+      }
     }
-    .left {
-      text-align: left;
-    }
-    .right {
-      text-align: right;
-    }
+  }
+  .fb33 {
+    flex-basis: 33.333%;
   }
 }

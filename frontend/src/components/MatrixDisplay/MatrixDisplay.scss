@@ -1,0 +1,19 @@
+$cols: 7;
+$cell-size: 20px;
+
+.matrix-display-input {
+  height: 400px;
+  width: 400px;
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  span {
+    border: 1px solid red;
+  }
+}
+.matrix-display {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  span {
+    margin: 1px;
+  }
+}

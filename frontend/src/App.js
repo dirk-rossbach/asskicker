@@ -1,12 +1,12 @@
-import { Component } from "react";
-import "./App.scss";
-import StartScreen from "./screens/StartScreen/StartScreen";
-import ScoreScreen from "./screens/ScoreScreen/ScoreScreen";
-import SelectScreen from "./screens/SelectScreen/SelectScreen";
-import MatchScreen from "./screens/MatchScreen/MatchScreen";
+import { Component } from 'react'
+import './App.scss'
+import StartScreen from './screens/StartScreen/StartScreen'
+import ScoreScreen from './screens/ScoreScreen/ScoreScreen'
+import SelectScreen from './screens/SelectScreen/SelectScreen'
+import MatchScreen from './screens/MatchScreen/MatchScreen'
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import MobileGameScreen from "./screens/MobileGameScreen/MobileGameScreen";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import MobileGameScreen from './screens/MobileGameScreen/MobileGameScreen'
 
 class App extends Component {
   render() {
@@ -48,16 +48,16 @@ class App extends Component {
           </Route>
         </Switch>
         <Switch>
-          <Route path="/match/b">
+          <Route path="/control/y">
             <MobileGameScreen team="0"></MobileGameScreen>
           </Route>
-          <Route path="/match/y">
+          <Route path="/control/b">
             <MobileGameScreen team="1"></MobileGameScreen>
           </Route>
         </Switch>
       </Router>
-    );
+    )
   }
 }
 
-export default App;
+export default App

@@ -49,6 +49,8 @@ matchRoute.post("/goal", (req, res, next) => {
   goalEvent.emit("goal");
 });
 matchRoute.post("/ungoal", (req, res, next) => {
+  match.removeLastGoal();
+  goalEvent.emit("goal");
   res.send("removed last goal");
 });
 matchRoute.get("/current", (req, res, next) => {
